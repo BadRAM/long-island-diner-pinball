@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dilikssq083ej"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://d07uxu0ry0k8x" path="res://physic-materials/ball.tres" id="1_x8fbi"]
+[ext_resource type="Texture2D" uid="uid://b7tffwxik05dy" path="res://art/n64_spheres_sprite_sheet.png" id="2_vbqjl"]
+[ext_resource type="Script" uid="uid://dgaiju3cou4i6" path="res://scenery/ballboard.gd" id="3_8ds6c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qih2i"]
+radius = 0.4
+
+[node name="Ball" type="RigidBody3D"]
+physics_material_override = ExtResource("1_x8fbi")
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qih2i")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+visible = false
+radius = 0.4
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+top_level = true
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(64, 64, 64, 64)
+script = ExtResource("3_8ds6c")

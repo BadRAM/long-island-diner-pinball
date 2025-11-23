@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://djqwhssn24a37"]
+
+[ext_resource type="Script" uid="uid://cthh25lfwdhep" path="res://scenery/bumper.gd" id="1_yvelx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
+bounce = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1bvp3"]
+height = 5.8398438
+radius = 1.0029297
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ed6cl"]
+height = 5.8398438
+radius = 1.1948242
+
+[node name="Bumper" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_h2yge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_1bvp3")
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_yvelx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ed6cl")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09265137, 0)
+radius = 1.059082
+height = 4.9211426
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_bullshit_happening_somewhere"]
