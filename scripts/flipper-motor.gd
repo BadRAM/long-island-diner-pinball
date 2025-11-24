@@ -1,6 +1,7 @@
 extends HingeJoint3D
 
-var speed = 30
+@export var speed = 10
+@export var right: bool
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("both_flippers"):

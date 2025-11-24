@@ -6,7 +6,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !visible: return
 	position = get_parent().position
-	var camera_pos = get_viewport().get_camera_3d().global_transform.origin
-	camera_pos.y = 0
 	rotate(Vector3.UP, get_parent().angular_velocity.y * delta)

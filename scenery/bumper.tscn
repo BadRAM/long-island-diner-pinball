@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://djqwhssn24a37"]
 
-[ext_resource type="Script" uid="uid://cthh25lfwdhep" path="res://scenery/bumper.gd" id="1_yvelx"]
+[ext_resource type="Script" uid="uid://cthh25lfwdhep" path="res://scripts/bumper.gd" id="1_yvelx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
 bounce = 2.0
@@ -20,6 +20,7 @@ physics_material_override = SubResource("PhysicsMaterial_h2yge")
 shape = SubResource("CylinderShape3D_1bvp3")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
 script = ExtResource("1_yvelx")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]

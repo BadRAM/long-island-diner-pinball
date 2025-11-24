@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://buv5fcblfve25"]
+[gd_scene load_steps=11 format=3 uid="uid://buv5fcblfve25"]
 
+[ext_resource type="Script" uid="uid://y62mkopjip63" path="res://scripts/game_manager.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cr534myny0qr4" path="res://scenery/flipper.tscn" id="1_q7w8i"]
 [ext_resource type="PackedScene" uid="uid://dilikssq083ej" path="res://scenery/ball.tscn" id="2_1rlpk"]
 [ext_resource type="Texture2D" uid="uid://bm7qpp4ou1je7" path="res://ref/pinball.png" id="3_bb8t0"]
 [ext_resource type="PackedScene" uid="uid://djqwhssn24a37" path="res://scenery/bumper.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://bnyc3qcpa6svp" path="res://scripts/action_sound.gd" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://d3in7wyxj7sn1" path="res://sound/flipperhold.mp3" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://ti024cy8wvl8" path="res://sound/flipperrelease.mp3" id="8_5vw27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pks0"]
 transparency = 1
@@ -15,17 +19,24 @@ size = Vector3(39.17565, 1, 33.648575)
 
 [node name="Test2" type="Node3D"]
 
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("spawnerNode")]
+script = ExtResource("1_lquwl")
+spawnerNode = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="GameManager"]
+transform = Transform3D(0.6953862, 0, 0.7186362, 0, 1, 0, -0.7186362, 0, 0.6953862, -9.817394, 0, -21.582884)
+
 [node name="Flipper" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(0.93996084, 0, 0.34128192, 0, 1, 0, -0.34128192, 0, 0.93996084, -4.8690805, 0, -0.96961844)
+transform = Transform3D(0.93996084, 0, 0.34128192, 0, 1, 0, -0.34128192, 0, 0.93996084, -4.8690805, -0.26841116, -0.96961844)
 
 [node name="Flipper3" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(0.9343351, 0, 0.35639548, 0, 1, 0, -0.35639548, 0, 0.9343351, -11.299634, 0, -0.82388175)
+transform = Transform3D(0.9343351, 0, 0.35639548, 0, 1, 0, -0.35639548, 0, 0.9343351, -11.299634, -0.26841116, -0.82388175)
 
 [node name="Flipper4" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(-0.96592575, 0, -0.25881886, 0, 1, 0, 0.25881886, 0, -0.96592575, 4.711042, 0, -0.77530444)
+transform = Transform3D(-0.96592575, 0, -0.25881886, 0, 1, 0, 0.25881886, 0, -0.96592575, 4.711042, -0.26841116, -0.77530444)
 
 [node name="Flipper2" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(-0.9314246, 0, -0.363934, 0, 1, 0, 0.363934, 0, -0.9314246, 11.052678, 0, -0.95565236)
+transform = Transform3D(-0.9314246, 0, -0.363934, 0, 1, 0, 0.363934, 0, -0.9314246, 11.052678, -0.26841116, -0.95565236)
 
 [node name="Ball" parent="." instance=ExtResource("2_1rlpk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99069, 0.9571762, -20.699526)
@@ -47,9 +58,9 @@ texture = ExtResource("3_bb8t0")
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Outer" type="CSGPolygon3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.2347848, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.2368937, 0)
 use_collision = true
-polygon = PackedVector2Array(-14.294771, 5.48601, -13.739788, -30.489395, 13.702615, -30.178259, 14.05845, 5.5541224, 10.450265, 5.631997, 11.748174, 1.5565661, 12.050019, -6.4149237, 11.380122, -6.8007364, 10.881902, -7.5311255, 10.8040285, -8.7252, 11.167441, -10.126941, 11.837724, -11.803913, 11.863681, -13.646942, 11.110894, -14.789103, 10.825355, -16.2168, 11.110894, -18.63091, 11.580193, -21.481464, 11.175717, -23.762705, 9.99465, -25.202635, 7.486905, -25.655647, 4.526148, -25.817436, 2.2287307, -26.642567, -0.084867, -28.179571, -2.5048084, -28.697407, -6.1248493, -27.619097, -8.307144, -25.334106, -11.105616, -23.38288, -12.038034, -21.187145, -10.686444, -18.113796, -9.291019, -15.289431, -9.785326, -14.877507, -11.062288, -17.390238, -12.298058, -16.5252, -11.474213, -13.51816, -11.0922785, -12.387369, -10.503389, -11.242306, -10.388884, -9.950021, -10.487031, -8.674093, -11.0104885, -7.643538, -12.157826, -6.842299, -12.1142845, 5.434094)
+polygon = PackedVector2Array(-14.294771, 5.48601, -13.739788, -30.489395, 13.702615, -30.178259, 14.05845, 5.5541224, 10.450265, 5.631997, 11.748174, 1.5565661, 12.050019, -6.4149237, 11.380122, -6.8007364, 10.881902, -7.5311255, 10.8040285, -8.7252, 11.167441, -10.126941, 11.837724, -11.803913, 11.863681, -13.646942, 11.110894, -14.789103, 10.825355, -16.2168, 11.110894, -18.63091, 11.580193, -21.481464, 11.175717, -23.762705, 9.99465, -25.202635, 7.486905, -25.655647, 4.526148, -25.817436, 2.2287307, -26.642567, -0.084867, -28.179571, -2.5048084, -28.697407, -6.1248493, -27.619097, -8.135227, -27.283903, -9.86676, -26.213007, -10.94725, -25.000456, -11.105616, -23.38288, -12.038034, -21.187145, -10.686444, -18.113796, -9.291019, -15.289431, -9.785326, -14.877507, -11.062288, -17.390238, -12.298058, -16.5252, -11.474213, -13.51816, -11.0922785, -12.387369, -10.503389, -11.242306, -10.388884, -9.950021, -10.487031, -8.674093, -11.0104885, -7.643538, -12.157826, -6.842299, -12.1142845, 5.434094)
 depth = 3.0
 material = SubResource("StandardMaterial3D_2pks0")
 
@@ -86,3 +97,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7945023, 0.14746094, -18.05
 
 [node name="Bumper3" parent="Walls" instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.372549, 0.14746094, -13.94528)
+
+[node name="FlipperSounds" type="Node" parent="."]
+
+[node name="LeftPress" type="AudioStreamPlayer" parent="FlipperSounds"]
+stream = ExtResource("6_272bh")
+script = ExtResource("6_7mycd")
+action = &"LeftFlipper"
+press = true
+
+[node name="LeftRelease" type="AudioStreamPlayer" parent="FlipperSounds"]
+stream = ExtResource("8_5vw27")
+script = ExtResource("6_7mycd")
+action = &"LeftFlipper"
+
+[node name="RightPress" type="AudioStreamPlayer" parent="FlipperSounds"]
+stream = ExtResource("6_272bh")
+script = ExtResource("6_7mycd")
+action = &"RightFlipper"
+press = true
+
+[node name="RightRelease" type="AudioStreamPlayer" parent="FlipperSounds"]
+stream = ExtResource("8_5vw27")
+script = ExtResource("6_7mycd")
+action = &"RightFlipper"

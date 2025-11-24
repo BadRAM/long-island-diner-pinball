@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnrgblh7x3hme"
-path.s3tc="res://.godot/imported/n64_spheres_sprite_sheet.png-50d921054e05544f94f019f5a557bf81.s3tc.ctex"
+uid="uid://bs5eku2ipi5hs"
+path.s3tc="res://.godot/imported/FoodBalls.png-ecef0f6a2c2cad3b9ce9e37e953ca109.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/n64_spheres_sprite_sheet.png"
-dest_files=["res://.godot/imported/n64_spheres_sprite_sheet.png-50d921054e05544f94f019f5a557bf81.s3tc.ctex"]
+source_file="res://art/FoodBalls.png"
+dest_files=["res://.godot/imported/FoodBalls.png-ecef0f6a2c2cad3b9ce9e37e953ca109.s3tc.ctex"]
 
 [params]
 

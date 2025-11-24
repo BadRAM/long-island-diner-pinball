@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dilikssq083ej"]
+[gd_scene load_steps=6 format=3 uid="uid://dilikssq083ej"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://d07uxu0ry0k8x" path="res://physic-materials/ball.tres" id="1_x8fbi"]
-[ext_resource type="Texture2D" uid="uid://b7tffwxik05dy" path="res://art/n64_spheres_sprite_sheet.png" id="2_vbqjl"]
-[ext_resource type="Script" uid="uid://dgaiju3cou4i6" path="res://scenery/ballboard.gd" id="3_8ds6c"]
+[ext_resource type="Script" uid="uid://13dh2tvpehcv" path="res://scripts/ball.gd" id="2_8ds6c"]
+[ext_resource type="Texture2D" uid="uid://bs5eku2ipi5hs" path="res://art/FoodBalls.png" id="2_vbqjl"]
+[ext_resource type="Script" uid="uid://dgaiju3cou4i6" path="res://scripts/ballboard.gd" id="3_8ds6c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qih2i"]
 radius = 0.4
 
 [node name="Ball" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
 physics_material_override = ExtResource("1_x8fbi")
 continuous_cd = true
+script = ExtResource("2_8ds6c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_qih2i")
@@ -18,9 +22,83 @@ shape = SubResource("SphereShape3D_qih2i")
 visible = false
 radius = 0.4
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="SpriteBurger1" type="Sprite3D" parent="."]
 top_level = true
+visible = false
+pixel_size = 0.0055
 texture = ExtResource("2_vbqjl")
 region_enabled = true
-region_rect = Rect2(64, 64, 64, 64)
+region_rect = Rect2(0.64527893, -0.026945591, 185.11708, 174.5253)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteBurger2" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.0055
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(2.451416, 175.42175, 175.47388, 175.83673)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteBurger3" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.0055
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(0.4760151, 359.6779, 185.281, 150.29745)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteFries1" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.007
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(373.64554, 0.92430997, 138.53354, 147.82074)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteFries2" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.0075
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(366.70035, 165.69904, 144.68564, 182.73001)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteFries3" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.006
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(331.34073, 360.84494, 180.62598, 148.22644)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteShake1" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.0055
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(185.90808, 6.8401823, 187.02264, 160.54803)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteShake2" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.0055
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(178.1027, 185.76056, 189.66017, 159.78265)
+script = ExtResource("3_8ds6c")
+
+[node name="SpriteShake3" type="Sprite3D" parent="."]
+top_level = true
+visible = false
+pixel_size = 0.007
+texture = ExtResource("2_vbqjl")
+region_enabled = true
+region_rect = Rect2(209.2727, 346.63504, 119.24707, 165.12747)
 script = ExtResource("3_8ds6c")

@@ -38,6 +38,11 @@ both_flippers={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Walls"
+3d_physics/layer_2="Balls"
+
 [physics]
 
 3d/run_on_separate_thread=true

@@ -1,0 +1,22 @@
+extends Node
+
+@export var spawnerNode: Node3D
+var ballScene = load("res://scenery/ball.tscn")
+var nextBallTimer = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _physics_process(delta: float) -> void:
+	nextBallTimer -= delta
+	if nextBallTimer <= 0:
+		nextBallTimer = 10
+		var newball = ballScene.instantiate()
+		add_sibling(newball)
+		newball.position = spawnerNode.position
+		newball.linear_velocity = spawnerNode.transform.basis.z * 25
