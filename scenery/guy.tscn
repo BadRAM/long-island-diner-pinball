@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtf0nlsytye06"]
+
+[ext_resource type="Texture2D" uid="uid://wnupo14novkm" path="res://art/Guys1.png" id="1_1psjw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acsdl"]
+size = Vector3(5.0811157, 4.5849, 3.0858765)
+
+[node name="Guy" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1343689, 0.45254517, 0.39492798)
+shape = SubResource("BoxShape3D_acsdl")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("1_1psjw")
+region_enabled = true
+region_rect = Rect2(122.25692, 547.4125, 538.59973, 417.0288)

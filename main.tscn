@@ -1,102 +1,147 @@
-[gd_scene load_steps=11 format=3 uid="uid://buv5fcblfve25"]
+[gd_scene load_steps=36 format=3 uid="uid://buv5fcblfve25"]
 
 [ext_resource type="Script" uid="uid://y62mkopjip63" path="res://scripts/game_manager.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cr534myny0qr4" path="res://scenery/flipper.tscn" id="1_q7w8i"]
 [ext_resource type="PackedScene" uid="uid://dilikssq083ej" path="res://scenery/ball.tscn" id="2_1rlpk"]
-[ext_resource type="Texture2D" uid="uid://bm7qpp4ou1je7" path="res://ref/pinball.png" id="3_bb8t0"]
+[ext_resource type="AudioStream" uid="uid://f04hlf73ykk" path="res://sfx/misc/newfood.mp3" id="2_qsp4k"]
+[ext_resource type="PackedScene" uid="uid://b8ndeod0tjn37" path="res://scenery/flipperRight.tscn" id="3_yaehf"]
 [ext_resource type="PackedScene" uid="uid://djqwhssn24a37" path="res://scenery/bumper.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b3hk5aitlq7a8" path="res://art/Counter.png" id="4_kek77"]
+[ext_resource type="Texture2D" uid="uid://n0u1j3r6khar" path="res://art/BG.png" id="6_1u8w0"]
 [ext_resource type="Script" uid="uid://bnyc3qcpa6svp" path="res://scripts/action_sound.gd" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://d3in7wyxj7sn1" path="res://sound/flipperhold.mp3" id="6_272bh"]
 [ext_resource type="AudioStream" uid="uid://ti024cy8wvl8" path="res://sound/flipperrelease.mp3" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://j5uxgq6wbuga" path="res://sound/music.mp3" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://cph7cvj2nptno" path="res://art/Railing.png" id="10_4c57u"]
+[ext_resource type="Texture2D" uid="uid://c6uhetht6d4cc" path="res://art/Railing3.png" id="11_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://c7ceutxawlvpv" path="res://art/Railing2.png" id="12_2cqfq"]
+[ext_resource type="Script" uid="uid://cc4k41wf2ylks" path="res://cooking_area.gd" id="12_w48qg"]
+[ext_resource type="AudioStream" uid="uid://1n3tl48uagvk" path="res://sfx/cooking/chop.mp3" id="13_vivmo"]
+[ext_resource type="Texture2D" uid="uid://daaiqt2vg7c1a" path="res://art/SauceCounter.png" id="13_yaehf"]
+[ext_resource type="Texture2D" uid="uid://bagqpupigv02c" path="res://art/DeepFryer.png" id="15_cegan"]
+[ext_resource type="Texture2D" uid="uid://dyd25c5vvvdvd" path="res://art/Knives.png" id="15_seu75"]
+[ext_resource type="PackedScene" uid="uid://dtf0nlsytye06" path="res://scenery/guy.tscn" id="16_074og"]
+[ext_resource type="AudioStream" uid="uid://bx5yin5h51aun" path="res://sfx/cooking/frying.mp3" id="18_82xsv"]
+[ext_resource type="Texture2D" uid="uid://46bfcce316bd" path="res://art/NextUpSign.png" id="20_getpj"]
+[ext_resource type="AudioStream" uid="uid://jf1kgdca7mi2" path="res://sfx/cooking/squirt.mp3" id="20_lswn8"]
+[ext_resource type="Texture2D" uid="uid://bjfn0riq2fy5e" path="res://art/Progression.png" id="21_ryguw"]
+[ext_resource type="AudioStream" uid="uid://bce44u3u7niiq" path="res://sfx/impacts/cookedburgerimpact.mp3" id="21_xuqvo"]
+[ext_resource type="Texture2D" uid="uid://c3244ontw5ra1" path="res://art/GameRules.png" id="22_d13ii"]
+[ext_resource type="FontFile" uid="uid://cnu4x1aim7fb8" path="res://Malvides.otf" id="23_1u8w0"]
+[ext_resource type="Texture2D" uid="uid://c8ifprbh74biw" path="res://art/Sauce1.png" id="26_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://c7i2v4cl55btn" path="res://bun.tres" id="27_a6jrf"]
+[ext_resource type="Script" uid="uid://cavihxt71wmc" path="res://food_vaporizer.gd" id="30_kq58d"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pks0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.7490196)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vfvc6"]
-size = Vector3(39.17565, 1, 33.648575)
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+size = Vector3(39.17565, 1, 44.734932)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
+size = Vector3(2.4120026, 3.5542603, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsp4k"]
+size = Vector3(31.320068, 12.824341, 1)
 
 [node name="Test2" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("spawnerNode")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("spawnerNode", "newBallSound")]
 script = ExtResource("1_lquwl")
-spawnerNode = NodePath("Node3D")
+spawnerNode = NodePath("NewBallEmitter")
+newBallSound = NodePath("NewBallSound")
 
-[node name="Node3D" type="Node3D" parent="GameManager"]
-transform = Transform3D(0.6953862, 0, 0.7186362, 0, 1, 0, -0.7186362, 0, 0.6953862, -9.817394, 0, -21.582884)
+[node name="NewBallEmitter" type="Node3D" parent="GameManager"]
+transform = Transform3D(0.70695865, 0, 0.7072548, 0, 1, 0, -0.7072548, 0, 0.70695865, -10.3360815, 0, -17.082157)
+
+[node name="NewBallSound" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("2_qsp4k")
 
 [node name="Flipper" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(0.93996084, 0, 0.34128192, 0, 1, 0, -0.34128192, 0, 0.93996084, -4.8690805, -0.26841116, -0.96961844)
+transform = Transform3D(0.9612616, 0, -0.27563733, 0, 1, 0, 0.27563733, 0, 0.9612616, -4.506935, 1.3957796, 0.23666847)
 
 [node name="Flipper3" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(0.9343351, 0, 0.35639548, 0, 1, 0, -0.35639548, 0, 0.9343351, -11.299634, -0.26841116, -0.82388175)
+transform = Transform3D(0.9612617, 0, -0.27563736, 0, 1, 0, 0.27563736, 0, 0.9612617, -10.214, 1.396, 0.237)
 
-[node name="Flipper4" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(-0.96592575, 0, -0.25881886, 0, 1, 0, 0.25881886, 0, -0.96592575, 4.711042, -0.26841116, -0.77530444)
+[node name="FlipperRight" parent="." instance=ExtResource("3_yaehf")]
+transform = Transform3D(0.9612617, 0, 0.27563736, 0, 1, 0, -0.27563736, 0, 0.9612617, 4.4938416, 1.4232495, 0.13937378)
 
-[node name="Flipper2" parent="." instance=ExtResource("1_q7w8i")]
-transform = Transform3D(-0.9314246, 0, -0.363934, 0, 1, 0, 0.363934, 0, -0.9314246, 11.052678, -0.26841116, -0.95565236)
+[node name="FlipperRight2" parent="." instance=ExtResource("3_yaehf")]
+transform = Transform3D(0.9612617, 0, 0.27563736, 0, 1, 0, -0.27563736, 0, 0.9612617, 10.055582, 1.4232495, 0.13937378)
 
 [node name="Ball" parent="." instance=ExtResource("2_1rlpk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99069, 0.9571762, -20.699526)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -5.1147282e-08, 7.08992e-08, 5.644642e-09, 0.77152467, 0.63619936, -8.724035e-08, 0.63619936, -0.77152467, 0, 5.115337, -3.7486224)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0851746, 0.9571762, -22.188192)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, -1.7484555e-07, 5.2108035e-15, 0, 2.9802322e-08, 1, -1.7484555e-07, -1, 2.9802322e-08, 0, 8.800442, -12.814313)
+transform = Transform3D(1, -1.7484555e-07, 5.2108035e-15, 0, 2.9802322e-08, 1, -1.7484555e-07, -1, 2.9802322e-08, 0, 17.950655, -12.814313)
 projection = 1
 current = true
-size = 31.287
+size = 36.362
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(3.385, 0, 0, 0, -1.4796305e-07, 3.385, 0, -3.385, -1.4796305e-07, 0, -2.4225664, -11.846901)
-visible = false
-texture = ExtResource("3_bb8t0")
+transform = Transform3D(3.905, 0, 0, 0, -1.7069297e-07, 3.905, 0, -3.905, -1.7069297e-07, -0.027926445, 3.7496815, -10.502164)
+texture = ExtResource("4_kek77")
+
+[node name="Sprite3D10" type="Sprite3D" parent="."]
+transform = Transform3D(3.905, 0, 0, 0, -1.7069297e-07, 3.905, 0, -3.905, -1.7069297e-07, -0.15972136, -18.723124, -10.528989)
+texture = ExtResource("6_1u8w0")
 
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Outer" type="CSGPolygon3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.2368937, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.2618964, 0)
 use_collision = true
-polygon = PackedVector2Array(-14.294771, 5.48601, -13.739788, -30.489395, 13.702615, -30.178259, 14.05845, 5.5541224, 10.450265, 5.631997, 11.748174, 1.5565661, 12.050019, -6.4149237, 11.380122, -6.8007364, 10.881902, -7.5311255, 10.8040285, -8.7252, 11.167441, -10.126941, 11.837724, -11.803913, 11.863681, -13.646942, 11.110894, -14.789103, 10.825355, -16.2168, 11.110894, -18.63091, 11.580193, -21.481464, 11.175717, -23.762705, 9.99465, -25.202635, 7.486905, -25.655647, 4.526148, -25.817436, 2.2287307, -26.642567, -0.084867, -28.179571, -2.5048084, -28.697407, -6.1248493, -27.619097, -8.135227, -27.283903, -9.86676, -26.213007, -10.94725, -25.000456, -11.105616, -23.38288, -12.038034, -21.187145, -10.686444, -18.113796, -9.291019, -15.289431, -9.785326, -14.877507, -11.062288, -17.390238, -12.298058, -16.5252, -11.474213, -13.51816, -11.0922785, -12.387369, -10.503389, -11.242306, -10.388884, -9.950021, -10.487031, -8.674093, -11.0104885, -7.643538, -12.157826, -6.842299, -12.1142845, 5.434094)
+collision_mask = 3
+polygon = PackedVector2Array(-14.348098, 9.299898, -14.181449, -30.644318, 14.197816, -30.794117, 14.159211, 8.870647, 13.681175, 8.92197, 13.725647, 2.805881, 13.641932, 1.295614, 13.391544, 0.55876666, 12.953639, -0.13491817, 12.450165, -0.6025178, 10.695175, -1.7552211, 9.900871, -2.3153071, 8.917152, -3.547138, 8.744034, -4.198875, 8.5811, -5.17648, 8.663239, -6.2960916, 9.246586, -8.223668, 10.594469, -10.443328, 11.845255, -12.53928, 12.585245, -14.435473, 12.802399, -16.154516, 12.894051, -17.508905, 12.773472, -18.848553, 11.985178, -21.813824, 11.231607, -23.687565, 10.281397, -25.068987, 9.802778, -25.476322, 9.130676, -25.720724, 7.526943, -26.035582, 4.973507, -25.932064, 3.3076766, -26.295588, 1.8107193, -27.181541, 0.3019395, -28.240509, -0.6963849, -28.925076, -1.352428, -29.21031, -2.1653495, -29.381453, -3.0067954, -29.295881, -3.8482404, -29.03917, -5.531132, -28.468699, -6.2014365, -28.197723, -6.8004317, -27.869703, -7.7569213, -27.241304, -8.740035, -26.529095, -9.554438, -25.610369, -10.484514, -24.376474, -11.451299, -22.78783, -11.809194, -21.992552, -12.038034, -21.187145, -12.237047, -20.480803, -12.305008, -19.799637, -12.37782, -19.1627, -12.274457, -18.414696, -11.860218, -17.390558, -11.166595, -16.299911, -10.808239, -15.794706, -10.218523, -15.140758, -9.350494, -14.171458, -8.2523365, -13.173133, -7.396629, -12.331687, -6.6345286, -11.37616, -7.0603824, -10.844206, -8.373219, -12.364278, -10.662041, -10.635102, -8.423224, -5.7588277, -8.844718, -3.609118, -10.079753, -2.049013, -12.083419, -0.8569589, -13.199384, 0.28437033, -13.782731, 1.856867, -13.840841, 9.375987)
 depth = 3.0
-material = SubResource("StandardMaterial3D_2pks0")
+material = SubResource("StandardMaterial3D_5vw27")
 
 [node name="Outer2" type="CSGPolygon3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.2347848, -1.6836963)
 use_collision = true
-polygon = PackedVector2Array(-5.172039, -19.485558, -5.3422327, -20.2879, -5.4394865, -21.28475, -5.378703, -21.98984, -5.1112556, -22.865122, -4.734398, -23.436487, -4.1995025, -23.825502, -3.6646075, -24.092949, -3.0324588, -24.263144, -2.43678, -24.20236, -1.8845559, -23.91086, -1.2995235, -23.483337, -0.91700375, -22.965809, -0.62543046, -22.2816, -0.4219762, -21.593235, -0.33366954, -20.227118)
+collision_mask = 3
+polygon = PackedVector2Array(-6.0884423, -17.875187, -5.846045, -19.94364, -5.4990673, -20.895578, -5.208191, -21.784367, -4.8526754, -22.479237, -4.481001, -22.996351, -4.0931654, -23.319546, -3.7538102, -23.529623, -3.3821356, -23.70738, -2.913502, -23.67506, -2.3802292, -23.497303, -1.7015183, -22.996351, -1.1844046, -22.28532, -0.6834519, -21.396532, -0.2160109, -19.963917, -0.15172511, -18.844051, -0.17724016, -17.845812, -1.6556249, -17.816778, -5.0530477, -17.855272, -5.331733, -17.757927, -5.411384, -17.449749, -5.538224, -15.502102, -5.741604, -15.366394, -5.981928, -15.344357, -6.1874094, -15.470919, -6.1834297, -16.699013)
 depth = 3.0
-material = SubResource("StandardMaterial3D_2pks0")
+material = SubResource("StandardMaterial3D_5vw27")
 
 [node name="Outer3" type="CSGPolygon3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.6141086, -1.2347848, -17.636183)
 use_collision = true
-polygon = PackedVector2Array(1.539576, 5.9858236, 1.8715796, 5.707659, 1.4188666, 5.1371326, 0.91188765, 4.5493965, 0.580585, 3.9044085, 0.32485247, 3.2493734, 0.19922876, 2.3655252, 0.16912222, 1.60322, 0.22744703, 0.7507782, 0.30219316, -0.2763958, 0.33808565, -1.1422977, 0.2971797, -1.9288883, 0.18501616, -2.6691666, -0.20979929, -3.5440426, -0.8889842, -4.152033, -1.5664515, -4.51993, -2.3201904, -4.825014, -2.9931715, -4.9237194, -3.5495026, -4.9416656, -4.1218505, -4.63179, -4.733949, -4.398794, -4.648705, -4.1385746, -3.9827678, -4.340164, -3.5296273, -4.560005, -2.995729, -4.5734653, -2.3855596, -4.4523296, -1.7125783, -4.1427574, -1.071003, -3.7793484, -0.538877, -3.2952995, -0.23827839, -2.5595055, -0.10368204, -1.8910122, -0.09899855, -1.159153, -0.1393776, -0.29773712, -0.20117712, 0.7066345, -0.2505293, 1.5949688, -0.25543928, 2.3774662, -0.10698366, 3.2876577, 0.18464136, 4.0817757, 0.5570235, 4.7520256, 1.1178412, 5.4115467)
+collision_mask = 3
+polygon = PackedVector2Array(-1.5199914, 7.66144, -1.3180671, 7.9108763, -0.9498515, 7.9583883, -0.07169294, 6.5528603, 0.57932186, 5.2769985, 0.79312325, 4.5880795, 1.0869565, 3.935072, 1.395783, 3.0798626, 1.6871505, 2.2207632, 1.8534408, 1.0329723, 2.007853, -0.39237785, 2.0117326, -1.5892086, 1.7504191, -2.6938534, 1.2871804, -3.3590183, 0.42009306, -4.404274, -0.67267466, -4.974413, -1.2903266, -4.974413, -2.0793195, -4.861803, -2.7294252, -4.5592384, -3.1789145, -4.249861, -3.7965791, -3.8396244, -4.5329967, -3.133337, -4.4442205, -2.8070774, -4.070401, -2.717739, -3.475863, -3.1927261, -2.905723, -3.5371857, -2.3949723, -3.8935242, -1.9792457, -4.0716915, -1.2190595, -4.249861, -0.6607976, -4.0716915, 0.014048576, -3.689745, 0.7267237, -2.9651928, 1.2018394, -2.1456165, 1.3321843, -0.932724, 1.3084283, 0.35009003, 1.094626, 1.5378819, 0.8367233, 2.520855, 0.5516529, 3.3166752, 0.24307823, 4.063798, -0.036058903, 4.6642723, -0.46366453, 5.638261, -0.9387803, 6.517226)
 depth = 3.0
-material = SubResource("StandardMaterial3D_2pks0")
+material = SubResource("StandardMaterial3D_5vw27")
+
+[node name="Outer4" type="CSGPolygon3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -10.387554, -1.2214792, -17.94314)
+use_collision = true
+collision_mask = 3
+polygon = PackedVector2Array(2.008274, 0.81079865, 2.053564, 0.62140274, 2.0564814, 0.3847332, 2.0641031, 0.11038208, 2.0945864, -0.15634918, 2.0945864, -0.4078369, 2.109828, -0.69742966, 2.1174498, -1.0175076, 2.1250696, -1.3375835, 2.0945864, -1.5662098, 2.0869665, -1.7338696, 2.0793428, -1.9091492, 2.0488596, -2.0615654, 2.0412397, -2.198742, 2.0183764, -2.3511581, 1.9924669, -2.5038128, 1.9819841, -2.7029858, 1.8981218, -2.9650574, 1.7618456, -3.0489197, 1.646534, -3.027954, 1.5207396, -2.9440918, 1.44736, -2.7973328, 1.4054289, -2.6715374, 1.3587551, -2.483244, 1.3628721, -2.252674, 1.3511095, -1.9847393, 1.3616838, -1.8418941, 1.3634624, -1.6594715, 1.3588114, -1.4083748, 1.3629284, -1.2107449, 1.3629284, -1.008995, 1.3629284, -0.8484211, 1.3630276, -0.6605625, 1.3630276, -0.4382267, 1.3630276, -0.12942696, 1.3424406, 0.24113083, 1.3536205, 0.53082085, 1.3783245, 0.7572727, 1.4606705, 0.88902855, 1.6212454, 0.94255257, 1.8229942, 0.94255257, 1.9382792, 0.8807926)
+depth = 3.0
+material = SubResource("StandardMaterial3D_5vw27")
 
 [node name="TopBottom" type="StaticBody3D" parent="Walls"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/TopBottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7331265, -1.3708808, 12.390754)
-shape = SubResource("BoxShape3D_vfvc6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7331265, -1.3708808, 6.847575)
+shape = SubResource("BoxShape3D_kek77")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="Walls/TopBottom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.096886635, 1.8577554, 12.390755)
-shape = SubResource("BoxShape3D_vfvc6")
+shape = SubResource("BoxShape3D_kek77")
 
 [node name="Bumper" parent="Walls" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54339516, 0.14746094, -15.43548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.643216, 0.14746094, -15.8626585)
 
 [node name="Bumper2" parent="Walls" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7945023, 0.14746094, -18.056839)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.882942, 0.14746094, -18.436554)
 
 [node name="Bumper3" parent="Walls" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.372549, 0.14746094, -13.94528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7015514, 0.14746094, -13.2333145)
 
 [node name="FlipperSounds" type="Node" parent="."]
 
@@ -121,3 +166,158 @@ press = true
 stream = ExtResource("8_5vw27")
 script = ExtResource("6_7mycd")
 action = &"RightFlipper"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kek77")
+volume_db = -15.864
+autoplay = true
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(3.464183, -0.2008355, -8.778798e-09, 0, -1.5167852e-07, 3.47, -0.2008355, -3.464183, -1.5142426e-07, 5.4939995, 2.884729, -15.7359705)
+texture = ExtResource("10_4c57u")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(2.585, 0, 0, 0, -1.1299394e-07, -2.585, 0, 2.585, -1.1299394e-07, -7.2931557, 2.5899138, -19.054485)
+texture = ExtResource("11_ycdy4")
+
+[node name="Sprite3D12" type="Sprite3D" parent="."]
+transform = Transform3D(0.63, 0, 0, 0, -2.7538174e-08, -0.63, 0, 0.63, -2.7538174e-08, -7.2614636, 2.7367663, -18.975613)
+texture = ExtResource("15_seu75")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(1.6884433, 1.9573923, -8.556032e-08, 1.02299405e-14, -1.1299394e-07, -2.585, -1.9573923, 1.6884433, -7.3804216e-08, -9.729294, 3.1332402, -18.056406)
+texture = ExtResource("12_2cqfq")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(-1.6095698, 0.019281324, -1.0136922e-09, 1.0700174e-14, -9.394919e-08, -2.5849998, -0.01443995, -2.1492205, 1.1298941e-07, -3.0453491, 3.1332402, -22.419138)
+texture = ExtResource("13_yaehf")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(-0.62077826, 0.7839862, -3.426912e-08, 0, -4.371139e-08, -1, -0.7839862, -0.62077826, 2.7135078e-08, -11.347065, 4.5476685, -12.4407215)
+texture = ExtResource("15_cegan")
+
+[node name="Kife" type="Area3D" parent="." node_paths=PackedStringArray("sound")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.17681, 0, -18.725868)
+collision_mask = 2
+script = ExtResource("12_w48qg")
+sound = NodePath("AudioStreamPlayer")
+level = 1
+foodType = "Fries"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kife"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086631775, 0.29135132, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Kife"]
+stream = ExtResource("13_vivmo")
+
+[node name="Friar" type="Area3D" parent="." node_paths=PackedStringArray("sound")]
+transform = Transform3D(0.79643494, 0, 0.6047242, 0, 1, 0, -0.6047242, 0, 0.79643494, -9.418713, 0, -10.998454)
+collision_mask = 2
+script = ExtResource("12_w48qg")
+sound = NodePath("AudioStreamPlayer")
+level = 2
+foodType = "Fries"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Friar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086631775, 0.29135132, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Friar"]
+stream = ExtResource("18_82xsv")
+
+[node name="Friar2" type="Area3D" parent="." node_paths=PackedStringArray("sound")]
+transform = Transform3D(0.79643494, 0, 0.6047242, 0, 1, 0, -0.6047242, 0, 0.79643494, -9.418713, 0, -10.998454)
+collision_mask = 2
+script = ExtResource("12_w48qg")
+sound = NodePath("AudioStreamPlayer")
+level = 1
+foodType = "Burger"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Friar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086631775, 0.29135132, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Friar2"]
+
+[node name="Sauce" type="Area3D" parent="." node_paths=PackedStringArray("sound")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1469193, -4.7683716e-07, -18.986156)
+collision_mask = 2
+script = ExtResource("12_w48qg")
+sound = NodePath("AudioStreamPlayer")
+level = 1
+foodType = "Shake"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sauce"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086631775, 0.29135132, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sauce"]
+stream = ExtResource("20_lswn8")
+
+[node name="Bunizer" type="Area3D" parent="." node_paths=PackedStringArray("sound")]
+transform = Transform3D(0.8297299, 0, -0.55816513, 0, 1, 0, 0.55816513, 0, 0.8297299, 8.613564, -4.7683716e-07, -10.630024)
+collision_mask = 2
+script = ExtResource("12_w48qg")
+sound = NodePath("AudioStreamPlayer")
+level = 2
+foodType = "Burger"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bunizer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086631775, 0.29135132, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Bunizer"]
+stream = ExtResource("21_xuqvo")
+
+[node name="Guy" parent="." instance=ExtResource("16_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002817154, 0, 3.5325055)
+
+[node name="Guy2" parent="." instance=ExtResource("16_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5706263, 0, 3.5325055)
+
+[node name="Guy3" parent="." instance=ExtResource("16_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.417302, 0, 3.5325055)
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 18.968334, 5.688306, -25.71417)
+texture = ExtResource("20_getpj")
+
+[node name="Sprite3D8" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 19.230785, 5.688306, -5.9644394)
+texture = ExtResource("21_ryguw")
+
+[node name="Sprite3D9" type="Sprite3D" parent="."]
+transform = Transform3D(2.3, 0, 0, 0, -1.0053619e-07, 2.3, 0, -2.3, -1.0053619e-07, -19.412525, 5.688306, -12.444627)
+texture = ExtResource("22_d13ii")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -19.402174, 6.802635, -20.181808)
+text = "Menu"
+font = ExtResource("23_1u8w0")
+font_size = 400
+outline_size = 100
+
+[node name="Sprite3D11" type="Sprite3D" parent="."]
+transform = Transform3D(1.505, 0, 0, 0, -6.578564e-08, 1.505, 0, -1.505, -6.578564e-08, -3.4159594, 7.893837, -22.480892)
+texture = ExtResource("26_a6jrf")
+
+[node name="BurgerSpin" type="Sprite3D" parent="."]
+transform = Transform3D(2.4292014, 1.4025, 6.130522e-08, 0, -1.2261044e-07, 2.805, 1.4025, -2.4292014, -1.0618376e-07, 8.5664015, 6.334779, -10.792003)
+texture = ExtResource("27_a6jrf")
+
+[node name="FoodVaporizer" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.079862)
+collision_mask = 2
+script = ExtResource("30_kq58d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoodVaporizer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.363, -0.318)
+shape = SubResource("BoxShape3D_qsp4k")
+
+[connection signal="body_entered" from="Kife" to="Kife" method="_on_body_entered"]
+[connection signal="body_entered" from="Friar" to="Friar" method="_on_body_entered"]
+[connection signal="body_entered" from="Friar2" to="Friar2" method="_on_body_entered"]
+[connection signal="body_entered" from="Sauce" to="Sauce" method="_on_body_entered"]
+[connection signal="body_entered" from="Bunizer" to="Bunizer" method="_on_body_entered"]
+[connection signal="body_entered" from="FoodVaporizer" to="FoodVaporizer" method="_on_body_entered"]

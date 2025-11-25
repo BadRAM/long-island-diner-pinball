@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://1ypqpek1cbj4"]
+[gd_scene load_steps=7 format=3 uid="uid://dp7c4rjgrs0kb"]
 
 [ext_resource type="PackedScene" uid="uid://cr534myny0qr4" path="res://scenery/flipper.tscn" id="1_kc4g7"]
 [ext_resource type="PackedScene" uid="uid://dilikssq083ej" path="res://scenery/ball.tscn" id="2_4prgn"]
@@ -41,7 +41,6 @@ size = 35.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(6.92, 0, 0, 0, -3.0248282e-07, 6.92, 0, -6.92, -3.0248282e-07, 0, -2.423, -10.237)
-visible = false
 texture = ExtResource("3_kc4g7")
 
 [node name="Walls" type="Node3D" parent="."]

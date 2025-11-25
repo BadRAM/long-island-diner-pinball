@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ndeod0tjn37"]
+
+[ext_resource type="PackedScene" uid="uid://cr534myny0qr4" path="res://scenery/flipper.tscn" id="1_641df"]
+
+[node name="Node3D" instance=ExtResource("1_641df")]
+
+[node name="CollisionShape3D" parent="Flipper" index="0"]
+transform = Transform3D(0.9989609, 0, 0.04536255, 0, 1, 0, -0.04536255, 0, 0.9989609, -1.71, -1.277, -0.171)
+
+[node name="CollisionShape3D2" parent="Flipper" index="1"]
+transform = Transform3D(0.99414116, 0, -0.10799829, 0, 1, 0, 0.10799829, 0, 0.99414116, -1.681, -1.277, 0.254)
+
+[node name="CollisionShape3D3" parent="Flipper" index="2"]
+transform = Transform3D(0.9941999, 0, 0.10754819, 0, 1, 0, -0.10754819, 0, 0.9941999, -3.41, -1.283, -0.011)
+
+[node name="HingeJoint3D" parent="Flipper" index="4"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+action = "RightFlipper"
+
+[node name="Sprite3D" parent="Flipper" index="5"]
+transform = Transform3D(-1.7547526, -0.029465098, -1.2879603e-09, 0, -7.6713484e-08, 1.755, 0.029465098, -1.7547526, -7.6702676e-08, -1.592, 0.109, 0.113)

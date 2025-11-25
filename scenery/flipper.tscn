@@ -1,43 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr534myny0qr4"]
+[gd_scene load_steps=7 format=3 uid="uid://cr534myny0qr4"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cobs0nw1wrnj6" path="res://physic-materials/flipper.tres" id="1_oekh8"]
 [ext_resource type="Script" uid="uid://crfsdit3if6ag" path="res://scripts/flipper-motor.gd" id="2_x5awe"]
+[ext_resource type="Texture2D" uid="uid://dwkwbc3hpm084" path="res://art/Flippers1.png" id="3_51oxc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6fcrs"]
-size = Vector3(3.8667908, 1, 1)
+size = Vector3(3.3206406, 3.6016846, 0.63391113)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfvc6"]
-shading_mode = 0
-albedo_color = Color(1, 0.59000003, 0.59000003, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nn2u7"]
+radius = 0.40673828
+height = 4.604004
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8lqk"]
+radius = 0.6616211
+height = 4.604004
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Flipper" type="RigidBody3D" parent="."]
-transform = Transform3D(0.9659258, 0, 0.25881898, 0, 1, 0, -0.25881898, 0, 0.9659258, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_mask = 2
 physics_material_override = ExtResource("1_oekh8")
 can_sleep = false
 continuous_cd = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flipper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4333956, 0, -2.9802322e-08)
+transform = Transform3D(0.9989869, 0, -0.044787012, 0, 1, 0, 0.044787012, 0, 0.9989869, 1.7095915, -1.2772827, -0.17084494)
 shape = SubResource("BoxShape3D_6fcrs")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Flipper"]
+transform = Transform3D(0.9941901, 0, 0.10754726, 0, 1, 0, -0.10754726, 0, 0.9941901, 1.6805153, -1.2772827, 0.2538611)
+shape = SubResource("BoxShape3D_6fcrs")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Flipper"]
+transform = Transform3D(0.9941999, 0, 0.10754819, 0, 1, 0, -0.10754819, 0, 0.9941999, 3.4098577, -1.2833862, -0.011231872)
+shape = SubResource("CapsuleShape3D_nn2u7")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Flipper"]
+transform = Transform3D(0.9941964, 0, 0.10754776, 0, 1, 0, -0.10754776, 0, 0.9941964, 0.037672985, -1.2833862, 0.09270188)
+shape = SubResource("CapsuleShape3D_c8lqk")
+
 [node name="HingeJoint3D" type="HingeJoint3D" parent="Flipper"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0, 0)
 node_a = NodePath("..")
 node_b = NodePath("../../World")
 angular_limit/enable = true
-angular_limit/upper = 1.0471976
-angular_limit/lower = -0.08726646
+angular_limit/upper = 0.7853982
+angular_limit/lower = 0.0
 motor/enable = true
 motor/target_velocity = 0.017453292
 motor/max_impulse = 10.0
 script = ExtResource("2_x5awe")
+speed = 15
+action = "LeftFlipper"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Flipper"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4291542, 0, 2.9802322e-08)
-size = Vector3(3.858307, 1, 1)
-material = SubResource("StandardMaterial3D_vfvc6")
+[node name="Sprite3D" type="Sprite3D" parent="Flipper"]
+transform = Transform3D(1.7547531, -0.029465107, -1.2879652e-09, -4.161383e-17, -7.671349e-08, 1.755, -0.029465107, -1.7547531, -7.670269e-08, 1.5917101, 0.108667135, 0.11320486)
+texture = ExtResource("3_51oxc")
 
 [node name="World" type="StaticBody3D" parent="."]
